@@ -1,4 +1,4 @@
-# AgriFusionR 0.0.0.9000 (Phase 2)
+# AgriFusionR 0.1.0
 
 * Eight more learners: `glm`, `knn`, `xgboost`, `cubist`, `enet`, `svm`, `gam`,
   and `stack`, a stacked ensemble weighted by non-negative least squares, with
@@ -20,7 +20,7 @@
 
 # AgriFusionR 0.0.0.9000
 
-Phase 0: design and core spine. Nothing is released.
+Pre-release development.
 
 * `agri_project()` keyed on management unit and season, with role detection,
   a duplicate-key validator and a provenance ledger.

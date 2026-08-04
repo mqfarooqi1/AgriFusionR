@@ -8,9 +8,8 @@
 
 **An integration framework for agricultural analytics.**
 
-> **Status: Phase 2 — spine, live ingestion, ten learners, five explanation
-> methods, and plotting. Early stage, not on CRAN, and the API will change.**
-> See
+> **Version 0.1.0 — prepared for CRAN.** Spine, live ingestion, ten learners,
+> five explanation methods and plotting. The API may still change. See
 > [ARCHITECTURE.md](ARCHITECTURE.md) for the design rationale and roadmap.
 
 ## Why this exists
