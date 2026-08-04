@@ -9,7 +9,8 @@
 **An integration framework for agricultural analytics.**
 
 > **Status: Phase 2 — spine, live ingestion, ten learners, five explanation
-> methods. Early stage, not on CRAN, and the API will change.** See
+> methods, and plotting. Early stage, not on CRAN, and the API will change.**
+> See
 > [ARCHITECTURE.md](ARCHITECTURE.md) for the design rationale and roadmap.
 
 ## Why this exists
@@ -116,7 +117,7 @@ Live ingestion is also real: `add_climate(source = "power")` pulls daily
 weather from NASA POWER through **nasapower**, and is verified to return the
 requested window exactly.
 
-120 tests; `R CMD check` clean, vignette included.
+219 tests; `R CMD check` clean, vignette included.
 
 ## What is wired up
 
@@ -145,9 +146,10 @@ are correlated, which for weather features they always are.
 
 ## Installing
 
-No heavy dependencies. `Imports` is `stats` and `utils` only — `sf`, `terra`,
-`ranger` and the rest are `Suggests` behind capability detection, so the
-package installs anywhere and the core works on a spreadsheet of trial plots.
+No heavy dependencies. `Imports` is `graphics`, `grDevices`, `stats` and
+`utils` — all base packages. `sf`, `terra`, `ranger`, `xgboost` and the rest
+are `Suggests` behind capability detection, so the package installs anywhere
+and the core works on a spreadsheet of trial plots.
 
 ```r
 remotes::install_github("mqfarooqi1/AgriFusionR")
