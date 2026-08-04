@@ -7,7 +7,7 @@
 \usage{
 explain(
   object,
-  method = c("importance", "pdp"),
+  method = c("importance", "pdp", "ale", "ice", "shap"),
   features = NULL,
   n_perm = 5,
   grid = 20,
@@ -16,7 +16,7 @@ explain(
 
 \method{explain}{agri_model}(
   object,
-  method = c("importance", "pdp"),
+  method = c("importance", "pdp", "ale", "ice", "shap"),
   features = NULL,
   n_perm = 5,
   grid = 20,
@@ -26,11 +26,10 @@ explain(
 \arguments{
 \item{object}{A model fitted by \code{\link[=train_model]{train_model()}}.}
 
-\item{method}{\code{"importance"} for out-of-fold permutation importance,
-\code{"pdp"} for partial dependence.}
+\item{method}{Which explanation to compute; see the section above.}
 
 \item{features}{Features to examine. Defaults to all for \code{"importance"} and
-to the five most important for \code{"pdp"}.}
+to the five most important otherwise.}
 
 \item{n_perm}{Number of shuffles per feature and fold. The function uses the
 ambient random state; call \code{\link[=set.seed]{set.seed()}} first for reproducibility.}
@@ -40,9 +39,10 @@ ambient random state; call \code{\link[=set.seed]{set.seed()}} first for reprodu
 \item{...}{Ignored.}
 }
 \value{
-A data frame: for \code{"importance"}, one row per feature with the mean
-and standard deviation of the error increase; for \code{"pdp"}, one row per
-feature and grid value with the averaged prediction.
+A data frame. For \code{"importance"}, one row per feature with the mean
+and standard deviation of the error increase. For \code{"pdp"} and \code{"ale"}, one
+row per feature and grid value. For \code{"ice"}, one row per observation,
+feature and grid value. For \code{"shap"}, one row per observation and feature.
 }
 \description{
 Permutation importance and partial dependence, both computed so that the
@@ -61,12 +61,41 @@ near-duplicates leaves the other to carry the signal, so both look
 unimportant. Treat the ranking as indicative and read it alongside partial
 dependence.
 }
+\section{Which method answers which question}{
+
+\describe{
+\item{\code{"importance"}}{How much does the model rely on this feature?
+Measured out of fold, so it reflects generalisation rather than
+memorisation.}
+\item{\code{"pdp"}}{What shape is the relationship, averaged over everything
+else? Misleading when features are strongly correlated, because it
+averages over combinations that never occur.}
+\item{\code{"ale"}}{The same question, but accumulated over local differences
+within narrow windows of the feature, so it never evaluates the model
+on impossible combinations. Prefer it to partial dependence whenever
+the predictors are correlated, which for weather features they always
+are (Apley and Zhu, 2020).}
+\item{\code{"ice"}}{Partial dependence for each observation separately.
+Curves that fan out reveal interactions that the averaged curve hides.}
+\item{\code{"shap"}}{Exact tree SHAP values, attributing each prediction among
+the features. Requires the \pkg{treeshap} package and a tree-based
+learner.}
+}
+}
+
 \examples{
 p <- agri_project(demo_agri_data(n_units = 12, n_seasons = 3))
 p <- build_features(phenology_windows(add_climate(p)))
 m <- train_model(p, "yield", algorithm = "lm", k = 3)
 set.seed(1)
 head(explain(m), 5)
+head(explain(m, "ale", features = "prcp_sum_grain_fill", grid = 6))
+}
+\references{
+Apley, D. W. & Zhu, J. (2020) "Visualizing the effects of
+predictor variables in black box supervised learning models." Journal of
+the Royal Statistical Society Series B 82, 1059-1086.
+\doi{10.1111/rssb.12377}
 }
 \seealso{
 \code{\link[=train_model]{train_model()}}, \code{\link[=uncertainty]{uncertainty()}}

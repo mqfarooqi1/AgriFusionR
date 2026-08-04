@@ -8,9 +8,9 @@
 
 **An integration framework for agricultural analytics.**
 
-> **Status: Phase 1 — core spine plus live climate ingestion. Early stage, not
-> on CRAN, and the API will change.** See [ARCHITECTURE.md](ARCHITECTURE.md)
-> for the design rationale and the phased roadmap.
+> **Status: Phase 2 — spine, live ingestion, ten learners, five explanation
+> methods. Early stage, not on CRAN, and the API will change.** See
+> [ARCHITECTURE.md](ARCHITECTURE.md) for the design rationale and roadmap.
 
 ## Why this exists
 
@@ -117,6 +117,24 @@ weather from NASA POWER through **nasapower**, and is verified to return the
 requested window exactly.
 
 120 tests; `R CMD check` clean, vignette included.
+
+## What is wired up
+
+**Data sources** (`list_sources()`) — NASA POWER, CHIRPS, Daymet, WorldClim,
+SoilGrids, SRTM elevation with slope and aspect, plus two offline demo sources.
+The first three and elevation are verified against the live services; WorldClim
+and SoilGrids share the same extraction path but have not been run end to end.
+
+**Learners** (`list_learners()`) — `lm`, `glm`, `knn`, `ranger`, `xgboost`,
+`cubist`, `enet` (elastic net), `svm`, `gam`, and `stack`, a stacked ensemble
+whose base learners are weighted by non-negative least squares. Every one is
+checked against a signal it should recover, and for row alignment, so an
+adapter that runs but predicts nonsense fails the suite.
+
+**Explanations** (`explain()`) — out-of-fold permutation importance, partial
+dependence, **accumulated local effects**, **ICE** curves, and exact **tree
+SHAP** via `treeshap`. ALE is preferred to partial dependence when predictors
+are correlated, which for weather features they always are.
 
 ## Installing
 

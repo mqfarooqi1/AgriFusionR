@@ -1,3 +1,18 @@
+# AgriFusionR 0.0.0.9000 (Phase 2)
+
+* Eight more learners: `glm`, `knn`, `xgboost`, `cubist`, `enet`, `svm`, `gam`,
+  and `stack`, a stacked ensemble weighted by non-negative least squares, with
+  `stack_weights()` to report the contributions. Ten in total.
+* Learners are tested for signal recovery *and* row alignment, so an adapter
+  that runs but predicts nonsense fails rather than passing quietly.
+* Three more explanation methods: accumulated local effects (Apley and Zhu
+  2020), ICE curves, and exact tree SHAP via `treeshap`.
+* Five remote data sources: CHIRPS, Daymet, WorldClim, SoilGrids, and SRTM
+  elevation with slope and aspect. CHIRPS defaults to the ClimateSERV backend,
+  because the CHC Cloud Optimized GeoTIFF path failed with GDAL tile-read
+  errors on point queries.
+* 187 tests; `R CMD check` clean.
+
 # AgriFusionR 0.0.0.9000
 
 Phase 0: design and core spine. Nothing is released.

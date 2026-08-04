@@ -29,7 +29,17 @@ Imports:
 Suggests:
     testthat (>= 3.0.0),
     ranger,
+    xgboost,
+    Cubist,
+    glmnet,
+    kernlab,
+    mgcv,
+    treeshap,
     nasapower,
+    chirps,
+    daymetr,
+    geodata,
+    terra,
     agridat,
     knitr,
     rmarkdown

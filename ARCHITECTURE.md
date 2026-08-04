@@ -1,6 +1,6 @@
 # AgriFusionR — Architecture and Design Rationale
 
-**Status:** Phase 0 (design + core spine). Not released. Not published.
+**Status:** Phase 2. Public, not released, not on CRAN.
 **Author:** Muhammad Farooqi
 **Last revised:** 2026-08-04
 
@@ -201,9 +201,9 @@ Deliberately measured in months. Scope expands only as validation accrues.
 | Phase | Content | State |
 |---|---|---|
 | **0** | Core spine: project object, provenance, GDD/phenology, features, QC + leakage guard, resampling, one learner, conformal intervals, explain, report. Fully offline-capable and tested. | **this phase** |
-| **1** | Real ingestion adapters, starting with `nasapower` (no auth required); soil via `soilDB`/`geodata`; harmonisation and cache hardening. | next |
+| **1** | Real ingestion adapters. **Done:** NASA POWER, CHIRPS, Daymet, WorldClim, SoilGrids, SRTM elevation with terrain derivatives. | **done** |
 | **2** | Raster and EO paths via `terra` + `rsi`/`rstac`; zonal extraction at scale; `gdalcubes` for time series. | |
-| **3** | Uncertainty and XAI depth: quantile forests, ensemble spread, ALE, `DALEX`/`iml` adapters, model cards. | |
+| **3** | Uncertainty and XAI depth. **Done:** ALE, ICE, tree SHAP, model cards, ten learners including a stacked ensemble. **Remaining:** quantile forests, ensemble spread, `DALEX`/`iml` adapters. | **part** |
 | **4** | Bayesian and geostatistical: `brms`, GPs, kriging residuals, GWR; causal-inference adapters. | |
 | **5** | Deep learning via `torch`/`luz`; sequence models where evidence justifies them. | |
 | **R** | **Research track, not promised:** foundation models, GNNs, federated learning, digital twins. Listed as intent, not as capability. | |

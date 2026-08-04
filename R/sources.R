@@ -145,35 +145,8 @@ add_satellite <- function(p, source, layer = "satellite",
         description = "NASA POWER daily agroclimatology via 'nasapower'")
 }
 
-#' @keywords internal
-#' @noRd
-.register_builtin_learners <- function() {
-    register_learner(
-        "lm", fit = function(x, y, ...) stats::lm(y ~ ., data = cbind(y = y, x)),
-        predict = function(object, newx, ...) {
-            as.numeric(stats::predict(object, newdata = newx))
-        },
-        description = "Ordinary least squares, always available")
-    register_learner(
-        "ranger",
-        ## Single-threaded by default: permutation importance issues hundreds
-        ## of predict calls, and repeatedly building a thread pool per call is
-        ## both slow and unstable. It is also what CRAN asks of examples and
-        ## tests. Pass num.threads to override.
-        fit = function(x, y, ...) {
-            args <- list(y = y, x = x, ...)
-            if (is.null(args$num.trees)) args$num.trees <- 500L
-            if (is.null(args$num.threads)) args$num.threads <- 1L
-            do.call(ranger::ranger, args)
-        },
-        predict = function(object, newx, ...) {
-            stats::predict(object, data = newx, num.threads = 1L)$predictions
-        },
-        requires = "ranger",
-        description = "Random forest via 'ranger'")
-}
-
 .onLoad <- function(libname, pkgname) {
     .register_builtin_sources()
+    .register_remote_sources()
     .register_builtin_learners()
 }
