@@ -1,5 +1,11 @@
 # AgriFusionR
 
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/mqfarooqi1/AgriFusionR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mqfarooqi1/AgriFusionR/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+<!-- badges: end -->
+
 **An integration framework for agricultural analytics.**
 
 > **Status: Phase 0 — design and core spine. Not released, not published, not
@@ -85,7 +91,32 @@ grain fill at correlation 1.000, and `heat_day_sum_silking` matches its
 silking heat-day count with zero difference. That is the phenological staging
 and the aggregation both being exactly right, and it is asserted in the tests.
 
-111 tests; `R CMD check` clean.
+## Does it hold on data we did not generate?
+
+A claim demonstrated only on your own simulation is not worth much. So the same
+pipeline was run on `agridat::lasrosas.corn` — 3,443 yield-monitor observations
+from an Argentine maize field over two seasons, published by someone else, and
+the setting where spatial autocorrelation bites hardest.
+
+| Resampling | RMSE | R² |
+|---|---|---|
+| Spatial blocks | 14.226 | **0.485** |
+| Random folds | 12.163 | **0.624** |
+| | | **overstated by 0.138** |
+
+Conformal coverage on the same run: **0.901 against a nominal 0.90**, on an
+error distribution nothing like the simulated one. Permutation importance ranks
+hilltop topography first, then brightness value, then applied nitrogen — which
+is what an agronomist would expect for that field.
+
+This is asserted in the test suite, so it is a regression test rather than a
+one-off claim.
+
+Live ingestion is also real: `add_climate(source = "power")` pulls daily
+weather from NASA POWER through **nasapower**, and is verified to return the
+requested window exactly.
+
+120 tests; `R CMD check` clean, vignette included.
 
 ## Installing
 

@@ -1,0 +1,187 @@
+---
+title: "Getting started with AgriFusionR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Getting started with AgriFusionR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+has_ranger <- requireNamespace("ranger", quietly = TRUE)
+has_agridat <- requireNamespace("agridat", quietly = TRUE)
+```
+
+```{r setup}
+library(AgriFusionR)
+```
+
+## The problem this package addresses
+
+R is well supplied with agricultural machine learning. Every component you
+might want already exists on CRAN: five packages for spatial cross-validation,
+seven for climate ingestion, three for Earth observation, and every learner
+worth having. What is missing is the layer that joins them, and two defaults
+that layer ought to enforce.
+
+**First, covariates should be aligned to the crop, not the calendar.**
+"Rainfall in September" means different things to two fields sown six weeks
+apart. "Rainfall during grain fill" means the same thing to both.
+
+**Second, models on spatial data should be validated spatially.** Under random
+k-fold cross-validation almost every test point has a near-duplicate in the
+training set, so the estimate answers a question nobody asked.
+
+## The unit of analysis
+
+Everything is keyed on a **management unit within a season**. A project is
+built from one row per unit per season; column roles are detected from common
+names.
+
+```{r}
+d <- demo_agri_data(n_units = 30, n_seasons = 3)
+head(d[, c("unit_id", "lon", "lat", "season", "planting", "harvest", "yield")])
+
+p <- agri_project(d)
+p
+```
+
+The demonstration data are simulated from a process that is known exactly, so
+the pipeline can be checked against the truth rather than against a previous
+run.
+
+## Attaching covariates
+
+Sources come from a registry, so adding a provider needs no change to the
+package. Here we use the built-in offline sources; `source = "power"` fetches
+real daily weather from NASA POWER through the **nasapower** package.
+
+```{r}
+p <- add_climate(p, source = "demo")
+p <- add_soil(p, source = "demo_soil")
+list_sources()[, c("name", "kind", "network")]
+```
+
+## Thermal time and phenological windows
+
+Stages are derived from accumulated growing degree days rather than dates.
+
+```{r}
+growing_degree_days(tmin = c(8, 12, 16), tmax = c(22, 28, 34), t_base = 10)
+crop_parameters("maize")
+```
+
+Those thresholds are **indicative defaults, not calibrated constants**.
+Thermal requirements vary with cultivar and region; supply your own through
+the `stages` argument for anything you intend to publish.
+
+```{r}
+p <- phenology_windows(p)
+head(p$windows, 4)
+```
+
+## Building the design matrix
+
+Daily layers are reduced to one row per unit and season, aggregated within
+stage. Stress counters are derived first.
+
+```{r}
+p <- build_features(p, stats = c("mean", "sum"))
+grep("grain_fill|silking", names(p$features), value = TRUE)[1:6]
+```
+
+## Checking before modelling
+
+The most valuable check is the leakage guard: a covariate window reaching past
+the harvest it predicts produces a model that cannot be deployed and a skill
+estimate that means nothing.
+
+```{r}
+check_project(p)
+```
+
+## Training
+
+Spatial folds are the default. The same model is also scored with random folds
+so the difference is a number rather than an argument.
+
+```{r, eval = has_ranger}
+set.seed(1)
+m <- train_model(p, target = "yield", algorithm = "ranger", k = 5)
+m
+```
+
+## Uncertainty
+
+Intervals are split conformal, which assumes nothing about the model or the
+error distribution. Because the residuals come from spatial folds, the
+intervals inherit that honesty.
+
+```{r, eval = has_ranger}
+uncertainty(m)
+head(predict(m, interval = TRUE), 3)
+```
+
+## Does it hold on real data?
+
+The claim above is easy to make on data you generated yourself. `lasrosas.corn`
+in the **agridat** package is 3443 yield-monitor observations from an Argentine
+maize field over two seasons — measurements from someone else entirely, and the
+setting where spatial autocorrelation bites hardest.
+
+```{r, eval = has_agridat && has_ranger}
+data(lasrosas.corn, package = "agridat")
+d0 <- lasrosas.corn[seq(1, nrow(lasrosas.corn), by = 3), ]
+
+real <- data.frame(unit_id = sprintf("p%05d", seq_len(nrow(d0))),
+                   lon = d0$long, lat = d0$lat, season = d0$year,
+                   yield = d0$yield)
+covs <- data.frame(unit_id = real$unit_id, nitro = d0$nitro, bv = d0$bv)
+for (lv in levels(d0$topo)) covs[[paste0("topo_", lv)]] <- +(d0$topo == lv)
+
+register_source("lasrosas", function(units, seasons, ...) covs,
+                provides = setdiff(names(covs), "unit_id"),
+                kind = "static", requires_network = FALSE)
+
+rp <- build_features(add_layer(agri_project(real), "lasrosas", "field"))
+set.seed(11)
+train_model(rp, target = "yield", algorithm = "ranger", k = 5)
+```
+
+On the full data set this reports an R<sup>2</sup> of 0.485 under spatial folds
+against 0.624 under random folds: the usual way of reporting would have
+overstated the model by 0.138. Conformal coverage on the same run is 0.901
+against a nominal 0.90.
+
+## Explaining
+
+Importance is measured out of fold. Note that permutation importance is
+unreliable when features are correlated, which climate features usually are:
+shuffling one of a near-duplicate pair leaves the other carrying the signal.
+
+```{r, eval = has_ranger}
+set.seed(2)
+head(explain(m, n_perm = 3), 5)
+```
+
+## Reporting
+
+`report()` writes a model card whose limitations section is generated from the
+model's own diagnostics, so it cannot drift out of step with the results.
+
+```{r, eval = has_ranger}
+cat(head(report(m), 24), sep = "\n")
+```
+
+## Extending
+
+A new provider or algorithm is a function and one registration call.
+
+```{r}
+register_learner("median_only",
+                 fit = function(x, y, ...) stats::median(y),
+                 predict = function(object, newx, ...) rep(object, nrow(newx)),
+                 description = "Baseline: predict the median")
+tail(list_learners(), 2)
+```
