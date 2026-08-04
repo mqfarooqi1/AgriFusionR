@@ -8,9 +8,9 @@
 
 **An integration framework for agricultural analytics.**
 
-> **Status: Phase 0 — design and core spine. Not released, not published, not
-> on CRAN.** The API will change. See [ARCHITECTURE.md](ARCHITECTURE.md) for the
-> design rationale and the phased roadmap.
+> **Status: Phase 1 — core spine plus live climate ingestion. Early stage, not
+> on CRAN, and the API will change.** See [ARCHITECTURE.md](ARCHITECTURE.md)
+> for the design rationale and the phased roadmap.
 
 ## Why this exists
 
@@ -144,7 +144,7 @@ register_learner("my_model",
 
 ## Honest limitations
 
-- **Phase 0.** Only the offline demo sources and a NASA POWER adapter are
+- **Early stage.** Only the offline demo sources and a NASA POWER adapter are
   written. Soil, satellite and raster paths are designed, not built.
 - **The shipped crop thermal parameters are indicative defaults**, not
   calibrated constants. Calibrate them locally before publishing anything.
