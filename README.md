@@ -131,6 +131,13 @@ whose base learners are weighted by non-negative least squares. Every one is
 checked against a signal it should recover, and for row alignment, so an
 adapter that runs but predicts nonsense fails the suite.
 
+**Visualisation** — base graphics throughout, so plotting needs no extra
+package. `plot()` methods for projects, resampling schemes and models;
+`plot_map()` for predicted, residual and error surfaces; `plot_effect()` for
+ALE, PDP and ICE curves; `plot_uncertainty()` for interval coverage. Plotting
+the resampling scheme is the useful one — you can see whether the blocking
+actually blocked anything, rather than assuming it did.
+
 **Explanations** (`explain()`) — out-of-fold permutation importance, partial
 dependence, **accumulated local effects**, **ICE** curves, and exact **tree
 SHAP** via `treeshap`. ALE is preferred to partial dependence when predictors

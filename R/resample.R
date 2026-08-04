@@ -137,8 +137,12 @@ resample_scheme <- function(p, method = c("spatial_block",
              "reduce `buffer` or `k`.", call. = FALSE)
     }
 
+    ## coordinates travel with the scheme so that it can be mapped without
+    ## needing the project back
     structure(list(method = method, k = length(folds), buffer = buffer,
-                   folds = folds, n = n),
+                   folds = folds, n = n, coords = coords,
+                   unit_id = f$unit_id, season_id = f$season_id,
+                   geographic = geo),
               class = "agri_resample")
 }
 

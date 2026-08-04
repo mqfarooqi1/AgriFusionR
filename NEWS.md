@@ -11,7 +11,12 @@
   elevation with slope and aspect. CHIRPS defaults to the ClimateSERV backend,
   because the CHC Cloud Optimized GeoTIFF path failed with GDAL tile-read
   errors on point queries.
-* 187 tests; `R CMD check` clean.
+* Visualisation layer in base graphics, so it adds no dependency:
+  `plot()` methods for `agri_project`, `agri_resample` and `agri_model`, plus
+  `plot_map()` (prediction, residual and error surfaces), `plot_effect()`
+  (ALE, PDP, ICE) and `plot_uncertainty()` (interval coverage). Colour scales
+  come from `hcl.colors()` and are safe for colour vision deficiency.
+* 219 tests; `R CMD check` clean.
 
 # AgriFusionR 0.0.0.9000
 
