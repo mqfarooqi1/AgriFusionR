@@ -173,6 +173,16 @@ Or the development version from GitHub:
 remotes::install_github("mqfarooqi1/AgriFusionR")
 ```
 
+Or as a container, with R, the package and its learners already installed:
+
+```bash
+docker run --rm -it ghcr.io/mqfarooqi1/agrifusionr
+```
+
+The image omits `terra` and `geodata`, and so the `worldclim`, `soilgrids` and
+`elevation` sources, because GDAL and its dependencies would add several
+gigabytes. The `Dockerfile` says how to include them.
+
 ## Extending it
 
 A new data provider or algorithm is a function plus one registration call:
