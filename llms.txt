@@ -193,6 +193,8 @@ plain API clients but import `sf` and `terra` themselves — so the
 `chirps`, `daymet`, `worldclim`, `soilgrids` and `elevation` sources are
 unavailable in it. Adding them means several gigabytes of GDAL, GEOS and
 PROJ; the `Dockerfile` says how, using `rocker/geospatial` as the base.
+`treeshap` is also left out, so `explain(method = "shap")` is
+unavailable in the image; every other explanation method works.
 
 ## Extending it
 
