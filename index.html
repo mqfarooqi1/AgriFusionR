@@ -174,12 +174,15 @@ the block, matching orbis, sddr and dataProfilerR.
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mqfarooqi1/AgriFusionR"</span><span class="op">)</span></span></code></pre></div>
+<p>Or as a container, with R, the package and its learners already installed:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-it</span> ghcr.io/mqfarooqi1/agrifusionr</span></code></pre></div>
+<p>The image omits <code>terra</code> and <code>geodata</code>, and so the <code>worldclim</code>, <code>soilgrids</code> and <code>elevation</code> sources, because GDAL and its dependencies would add several gigabytes. The <code>Dockerfile</code> says how to include them.</p>
 </div>
 <div class="section level2">
 <h2 id="extending-it">Extending it<a class="anchor" aria-label="anchor" href="#extending-it"></a>
 </h2>
 <p>A new data provider or algorithm is a function plus one registration call:</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/register_source.html">register_source</a></span><span class="op">(</span><span class="st">"my_provider"</span>,</span>
 <span>                fetch <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">units</span>, <span class="va">seasons</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span> <span class="va">...</span> <span class="op">}</span>,</span>
 <span>                provides <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tmin"</span>, <span class="st">"tmax"</span><span class="op">)</span>, kind <span class="op">=</span> <span class="st">"series"</span><span class="op">)</span></span>
