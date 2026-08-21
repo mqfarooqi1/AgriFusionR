@@ -30,7 +30,6 @@ COPY docker/install-group.R /tmp/install-group.R
 RUN Rscript /tmp/install-group.R ranger Cubist
 RUN Rscript /tmp/install-group.R glmnet kernlab
 RUN Rscript /tmp/install-group.R xgboost
-RUN Rscript /tmp/install-group.R treeshap
 RUN Rscript /tmp/install-group.R nasapower agridat
 RUN Rscript /tmp/install-group.R mgcv && rm -f /tmp/install-group.R
 
@@ -41,6 +40,11 @@ RUN Rscript /tmp/install-group.R mgcv && rm -f /tmp/install-group.R
 #                     elevation sources are unavailable.
 #   chirps, daymetr - these look like plain API clients but both import sf and
 #                     terra, so they pull in the same stack.
+#   treeshap        - needs compiling against Rcpp and pulls in the ggplot2
+#                     dependency tree, and would not build here. Its only use
+#                     in the package is explain(method = "shap"), so that one
+#                     method is unavailable in this image; every other
+#                     explanation method works.
 #
 # The nasapower source works here, as does everything that does not fetch
 # remote data. For the full set of sources, base this image on
