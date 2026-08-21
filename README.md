@@ -1,10 +1,22 @@
 # AgriFusionR
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/mqfarooqi1/AgriFusionR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mqfarooqi1/AgriFusionR/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/mqfarooqi1/AgriFusionR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mqfarooqi1/AgriFusionR/actions/workflows/R-CMD-check.yaml)
+[![R-universe](https://mqfarooqi1.r-universe.dev/badges/AgriFusionR)](https://mqfarooqi1.r-universe.dev/AgriFusionR)
+[![Documentation](https://img.shields.io/badge/docs-pkgdown-2F9E68.svg)](https://mqfarooqi1.github.io/AgriFusionR/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
+
+<!--
+CRAN badges: uncomment both once the package is accepted. Until then the
+version badge renders blank and the download badge renders "downloads null",
+because neither service has anything to report yet. They belong at the top of
+the block, matching orbis, sddr and dataProfilerR.
+
+[![CRAN status](https://www.r-pkg.org/badges/version/AgriFusionR)](https://CRAN.R-project.org/package=AgriFusionR)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/AgriFusionR)](https://CRAN.R-project.org/package=AgriFusionR)
+-->
 
 **An integration framework for agricultural analytics.**
 
@@ -151,6 +163,13 @@ are `Suggests` behind capability detection, so the package installs anywhere
 and the core works on a spreadsheet of trial plots.
 
 ```r
+install.packages("AgriFusionR", repos = "https://mqfarooqi1.r-universe.dev")
+```
+
+Or the development version from GitHub:
+
+```r
+# install.packages("remotes")
 remotes::install_github("mqfarooqi1/AgriFusionR")
 ```
 

@@ -1,0 +1,68 @@
+url: https://mqfarooqi1.github.io/AgriFusionR/
+
+template:
+  bootstrap: 5
+
+reference:
+- title: "The project"
+  desc: >
+    The object everything else operates on: management units observed over
+    seasons, with a provenance ledger.
+  contents:
+  - agri_project
+  - units_of
+  - demo_agri_data
+
+- title: "Covariates"
+  desc: >
+    Attaching climate, soil and remote-sensing layers through the source
+    registry, and reducing them to one row per unit and season.
+  contents:
+  - add_layer
+  - build_features
+  - growing_degree_days
+  - crop_parameters
+  - phenology_windows
+
+- title: "Checking"
+  desc: >
+    The faults that invalidate an analysis, including covariate windows that
+    reach past the harvest they predict.
+  contents:
+  - check_project
+
+- title: "Modelling"
+  desc: >
+    Spatial resampling by default, with the optimism of random folds reported
+    alongside.
+  contents:
+  - resample_scheme
+  - train_model
+  - predict.agri_model
+  - stack_weights
+
+- title: "Interpretation"
+  desc: >
+    Importance, marginal effects, prediction intervals and model cards.
+  contents:
+  - explain
+  - uncertainty
+  - report
+
+- title: "Plots"
+  contents:
+  - plot.agri_project
+  - plot.agri_resample
+  - plot.agri_model
+  - plot_map
+  - plot_effect
+  - plot_uncertainty
+
+- title: "Extending"
+  desc: >
+    Adding a data provider or a learning algorithm without modifying the
+    package.
+  contents:
+  - register_source
+  - register_learner
+  - list_sources

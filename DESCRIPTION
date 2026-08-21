@@ -48,6 +48,7 @@ Suggests:
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/mqfarooqi1/AgriFusionR
+URL: https://github.com/mqfarooqi1/AgriFusionR,
+        https://mqfarooqi1.github.io/AgriFusionR/
 BugReports: https://github.com/mqfarooqi1/AgriFusionR/issues
 Config/roxygen2/version: 8.0.0
