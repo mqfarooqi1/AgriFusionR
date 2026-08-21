@@ -16,9 +16,11 @@ LABEL org.opencontainers.image.licenses="MIT"
 # AgriFusionR itself imports only base packages, so nothing here is required to
 # install it. These are the optional learners and data clients that make the
 # image useful out of the box. mgcv ships with R and is not installed again.
+# No repos= here on purpose: rocker images come preconfigured with a binary
+# repository, and overriding it with cloud.r-project.org forces source
+# compilation of ranger, xgboost, glmnet, kernlab and treeshap.
 RUN Rscript -e 'install.packages(c("ranger", "xgboost", "Cubist", "glmnet", \
-      "kernlab", "treeshap", "nasapower", "chirps", "daymetr", "agridat"), \
-      repos = "https://cloud.r-project.org")' \
+      "kernlab", "treeshap", "nasapower", "chirps", "daymetr", "agridat"))' \
     && Rscript -e 'for (p in c("ranger","xgboost","Cubist","glmnet","kernlab", \
          "treeshap","nasapower","chirps","daymetr","agridat","mgcv")) \
          stopifnot(requireNamespace(p, quietly = TRUE))'
