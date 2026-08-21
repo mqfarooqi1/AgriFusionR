@@ -176,7 +176,7 @@ the block, matching orbis, sddr and dataProfilerR.
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"mqfarooqi1/AgriFusionR"</span><span class="op">)</span></span></code></pre></div>
 <p>Or as a container, with R, the package and its learners already installed:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-it</span> ghcr.io/mqfarooqi1/agrifusionr</span></code></pre></div>
-<p>The image omits <code>terra</code> and <code>geodata</code>, and so the <code>worldclim</code>, <code>soilgrids</code> and <code>elevation</code> sources, because GDAL and its dependencies would add several gigabytes. The <code>Dockerfile</code> says how to include them.</p>
+<p>The image carries the learners and the NASA POWER client. It leaves out <code>terra</code> and <code>geodata</code>, and also <code>chirps</code> and <code>daymetr</code>, which look like plain API clients but import <code>sf</code> and <code>terra</code> themselves — so the <code>chirps</code>, <code>daymet</code>, <code>worldclim</code>, <code>soilgrids</code> and <code>elevation</code> sources are unavailable in it. Adding them means several gigabytes of GDAL, GEOS and PROJ; the <code>Dockerfile</code> says how, using <code>rocker/geospatial</code> as the base.</p>
 </div>
 <div class="section level2">
 <h2 id="extending-it">Extending it<a class="anchor" aria-label="anchor" href="#extending-it"></a>

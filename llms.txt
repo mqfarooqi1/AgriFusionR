@@ -187,9 +187,12 @@ installed:
 docker run --rm -it ghcr.io/mqfarooqi1/agrifusionr
 ```
 
-The image omits `terra` and `geodata`, and so the `worldclim`,
-`soilgrids` and `elevation` sources, because GDAL and its dependencies
-would add several gigabytes. The `Dockerfile` says how to include them.
+The image carries the learners and the NASA POWER client. It leaves out
+`terra` and `geodata`, and also `chirps` and `daymetr`, which look like
+plain API clients but import `sf` and `terra` themselves — so the
+`chirps`, `daymet`, `worldclim`, `soilgrids` and `elevation` sources are
+unavailable in it. Adding them means several gigabytes of GDAL, GEOS and
+PROJ; the `Dockerfile` says how, using `rocker/geospatial` as the base.
 
 ## Extending it
 
