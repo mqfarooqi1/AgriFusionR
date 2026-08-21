@@ -3,7 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   AgriFusionR: AgriFusionR.html
-last_built: 2026-08-21T04:44Z
+last_built: 2026-08-21T05:22Z
 urls:
   reference: https://mqfarooqi1.github.io/AgriFusionR/reference
   article: https://mqfarooqi1.github.io/AgriFusionR/articles
