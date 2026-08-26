@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "AgriFusionR: An Integration Framework for Agricultural Analytics"
+abstract: >
+  Assembles agricultural analyses around the management unit within a season,
+  aggregating covariates over phenological windows derived from accumulated
+  growing degree days rather than calendar months, validating with spatial
+  resampling, and reporting distribution-free prediction intervals.
+authors:
+  - given-names: Muhammad
+    family-names: Farooqi
+    email: mqfarooqi@gmail.com
+    orcid: "https://orcid.org/0000-0003-4918-9791"
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/mqfarooqi1/AgriFusionR"
+url: "https://CRAN.R-project.org/package=AgriFusionR"
+repository: "https://CRAN.R-project.org/package=AgriFusionR"
+keywords:
+  - agriculture
+  - machine-learning
+  - spatial-cross-validation
+  - phenology
+  - conformal-prediction
+  - crop-yield

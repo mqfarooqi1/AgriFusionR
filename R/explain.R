@@ -57,11 +57,13 @@
 #'   \doi{10.1111/rssb.12377}
 #' @seealso [train_model()], [uncertainty()]
 #' @examples
+#' # aggregated with one statistic, and few shuffles, to keep the example
+#' # quick; use the defaults in real work
 #' p <- agri_project(demo_agri_data(n_units = 12, n_seasons = 3))
-#' p <- build_features(phenology_windows(add_climate(p)))
+#' p <- build_features(phenology_windows(add_climate(p)), stats = "sum")
 #' m <- train_model(p, "yield", algorithm = "lm", k = 3)
 #' set.seed(1)
-#' head(explain(m), 5)
+#' head(explain(m, n_perm = 2), 5)
 #' head(explain(m, "ale", features = "prcp_sum_grain_fill", grid = 6))
 #' @export
 explain <- function(object, method = c("importance", "pdp", "ale", "ice",

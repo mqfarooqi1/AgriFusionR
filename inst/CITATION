@@ -1,0 +1,9 @@
+bibentry(
+  bibtype  = "Manual",
+  title    = "{AgriFusionR: An Integration Framework for Agricultural Analytics}",
+  author   = person("Muhammad", "Farooqi",
+                    comment = c(ORCID = "0000-0003-4918-9791")),
+  year     = "2026",
+  note     = "R package version 0.1.0",
+  url      = "https://CRAN.R-project.org/package=AgriFusionR"
+)

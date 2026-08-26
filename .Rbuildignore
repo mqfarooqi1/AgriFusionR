@@ -11,3 +11,4 @@
 ^pkgdown$
 ^Dockerfile$
 ^docker$
+^CITATION\.cff$

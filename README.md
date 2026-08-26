@@ -1,6 +1,7 @@
 # AgriFusionR <a href="https://mqfarooqi1.github.io/AgriFusionR/"><img src="man/figures/logo.png" align="right" height="139" alt="AgriFusionR website" /></a>
 
 <!-- badges: start -->
+[![CRAN status](https://www.r-pkg.org/badges/version/AgriFusionR)](https://CRAN.R-project.org/package=AgriFusionR)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/mqfarooqi1/AgriFusionR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mqfarooqi1/AgriFusionR/actions/workflows/R-CMD-check.yaml)
 [![R-universe](https://mqfarooqi1.r-universe.dev/badges/AgriFusionR)](https://mqfarooqi1.r-universe.dev/AgriFusionR)
@@ -9,20 +10,17 @@
 <!-- badges: end -->
 
 <!--
-CRAN badges: uncomment both once the package is accepted. Until then the
-version badge renders blank and the download badge renders "downloads null",
-because neither service has anything to report yet. They belong at the top of
-the block, matching orbis, sddr and dataProfilerR.
+Download badge: uncomment once CRAN's logs have caught up, a day or two after
+publication. Until then it renders as "downloads null".
 
-[![CRAN status](https://www.r-pkg.org/badges/version/AgriFusionR)](https://CRAN.R-project.org/package=AgriFusionR)
 [![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/AgriFusionR)](https://CRAN.R-project.org/package=AgriFusionR)
 -->
 
 **An integration framework for agricultural analytics.**
 
-> **Version 0.1.0 — prepared for CRAN.** Spine, live ingestion, ten learners,
-> five explanation methods and plotting. The API may still change. See
-> [ARCHITECTURE.md](ARCHITECTURE.md) for the design rationale and roadmap.
+> **Version 0.1.0, on CRAN.** Spine, live ingestion, ten learners, five
+> explanation methods and plotting. Early stage, so the API may still change.
+> See [ARCHITECTURE.md](ARCHITECTURE.md) for the design rationale and roadmap.
 
 ## Why this exists
 
@@ -163,6 +161,13 @@ are `Suggests` behind capability detection, so the package installs anywhere
 and the core works on a spreadsheet of trial plots.
 
 ```r
+install.packages("AgriFusionR")
+```
+
+Or from [R-universe](https://mqfarooqi1.r-universe.dev/AgriFusionR), which
+carries binaries built from the latest commit:
+
+```r
 install.packages("AgriFusionR", repos = "https://mqfarooqi1.r-universe.dev")
 ```
 
@@ -214,6 +219,16 @@ register_learner("my_model",
 - **The demo data are simulated**, with a known data-generating process, so the
   tests can check that the pipeline recovers the truth rather than a previous
   run.
+
+## Citation
+
+```r
+citation("AgriFusionR")
+```
+
+> Farooqi M (2026). *AgriFusionR: An Integration Framework for Agricultural
+> Analytics*. R package version 0.1.0.
+> <https://CRAN.R-project.org/package=AgriFusionR>
 
 ## References
 

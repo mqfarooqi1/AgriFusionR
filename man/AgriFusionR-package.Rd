@@ -32,6 +32,7 @@ algorithms without modifying the package.
 Useful links:
 \itemize{
   \item \url{https://github.com/mqfarooqi1/AgriFusionR}
+  \item \url{https://mqfarooqi1.github.io/AgriFusionR/}
   \item Report bugs at \url{https://github.com/mqfarooqi1/AgriFusionR/issues}
 }
 
