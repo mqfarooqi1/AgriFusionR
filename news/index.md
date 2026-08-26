@@ -2,6 +2,8 @@
 
 ## AgriFusionR 0.1.0
 
+CRAN release: 2026-08-26
+
 - Eight more learners: `glm`, `knn`, `xgboost`, `cubist`, `enet`, `svm`,
   `gam`, and `stack`, a stacked ensemble weighted by non-negative least
   squares, with

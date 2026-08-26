@@ -2,8 +2,8 @@
 
 **An integration framework for agricultural analytics.**
 
-> **Version 0.1.0 — prepared for CRAN.** Spine, live ingestion, ten
-> learners, five explanation methods and plotting. The API may still
+> **Version 0.1.0, on CRAN.** Spine, live ingestion, ten learners, five
+> explanation methods and plotting. Early stage, so the API may still
 > change. See
 > [ARCHITECTURE.md](https://mqfarooqi1.github.io/AgriFusionR/ARCHITECTURE.md)
 > for the design rationale and roadmap.
@@ -169,6 +169,14 @@ anywhere and the core works on a spreadsheet of trial plots.
 
 ``` r
 
+install.packages("AgriFusionR")
+```
+
+Or from [R-universe](https://mqfarooqi1.r-universe.dev/AgriFusionR),
+which carries binaries built from the latest commit:
+
+``` r
+
 install.packages("AgriFusionR", repos = "https://mqfarooqi1.r-universe.dev")
 ```
 
@@ -227,6 +235,17 @@ register_learner("my_model",
 - **The demo data are simulated**, with a known data-generating process,
   so the tests can check that the pipeline recovers the truth rather
   than a previous run.
+
+## Citation
+
+``` r
+
+citation("AgriFusionR")
+```
+
+> Farooqi M (2026). *AgriFusionR: An Integration Framework for
+> Agricultural Analytics*. R package version 0.1.0.
+> <https://CRAN.R-project.org/package=AgriFusionR>
 
 ## References
 

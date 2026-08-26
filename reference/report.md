@@ -643,7 +643,7 @@ cat(head(report(m), 20), sep = "\n")
 #> Warning: prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
 #> # Model card
 #> 
-#> Generated 2026-08-21 by AgriFusionR.
+#> Generated 2026-08-26 by AgriFusionR.
 #> 
 #> ## What was fitted
 #> 
@@ -660,5 +660,5 @@ cat(head(report(m), 20), sep = "\n")
 #> | Resampling | n | RMSE | MAE | R2 | Bias |
 #> |---|---|---|---|---|---|
 #> | spatial_block (reported) | 36 | 584.939 | 339.920 | -869544.922 | +336.637 |
-#> | random (for comparison) | 36 | 21.961 | 10.544 | -1224.722 | +3.280 |
+#> | random (for comparison) | 36 | 23.370 | 11.587 | -1386.970 | +1.967 |
 ```

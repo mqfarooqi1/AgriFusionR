@@ -41,6 +41,8 @@ Useful links:
 
 - <https://github.com/mqfarooqi1/AgriFusionR>
 
+- <https://mqfarooqi1.github.io/AgriFusionR/>
+
 - Report bugs at <https://github.com/mqfarooqi1/AgriFusionR/issues>
 
 ## Author
