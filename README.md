@@ -2,19 +2,13 @@
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/AgriFusionR)](https://CRAN.R-project.org/package=AgriFusionR)
+[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/AgriFusionR)](https://CRAN.R-project.org/package=AgriFusionR)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 [![R-CMD-check](https://github.com/mqfarooqi1/AgriFusionR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/mqfarooqi1/AgriFusionR/actions/workflows/R-CMD-check.yaml)
 [![R-universe](https://mqfarooqi1.r-universe.dev/badges/AgriFusionR)](https://mqfarooqi1.r-universe.dev/AgriFusionR)
 [![Documentation](https://img.shields.io/badge/docs-pkgdown-2F9E68.svg)](https://mqfarooqi1.github.io/AgriFusionR/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 <!-- badges: end -->
-
-<!--
-Download badge: uncomment once CRAN's logs have caught up, a day or two after
-publication. Until then it renders as "downloads null".
-
-[![CRAN downloads](https://cranlogs.r-pkg.org/badges/grand-total/AgriFusionR)](https://CRAN.R-project.org/package=AgriFusionR)
--->
 
 **An integration framework for agricultural analytics.**
 
