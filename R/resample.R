@@ -1,7 +1,3 @@
-## Assisted-by: Claude (Anthropic). Written with AI assistance under the
-## author's direction; methods are established techniques cited in the
-## documentation, and the results are validated in tests/testthat.
-
 #' @keywords internal
 #' @noRd
 .dist_km <- function(x1, y1, x2, y2, geographic = TRUE) {

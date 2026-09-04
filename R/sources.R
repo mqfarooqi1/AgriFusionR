@@ -1,7 +1,3 @@
-## Assisted-by: Claude (Anthropic). Written with AI assistance under the
-## author's direction; methods are established techniques cited in the
-## documentation, and the results are validated in tests/testthat.
-
 #' Attach a covariate layer to a project
 #'
 #' Fetches covariates from a registered source and attaches them to the

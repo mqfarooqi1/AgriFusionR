@@ -1,7 +1,3 @@
-## Assisted-by: Claude (Anthropic). Written with AI assistance under the
-## author's direction; methods are established techniques cited in the
-## documentation, and the results are validated in tests/testthat.
-
 ## Adapters to established R clients for public environmental data. Each is a
 ## translation into the package's (unit, season, date) convention; none
 ## reimplements an API client. All need network access, so they are skipped in

@@ -1,7 +1,3 @@
-## Assisted-by: Claude (Anthropic). Written with AI assistance under the
-## author's direction; methods are established techniques cited in the
-## documentation, and the results are validated in tests/testthat.
-
 ## A closed, fully deterministic demonstration system. The weather is generated
 ## from harmonics rather than a random number generator, so it is reproducible
 ## without touching the global RNG state, and the yield is built from the same

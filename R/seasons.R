@@ -1,7 +1,3 @@
-## Assisted-by: Claude (Anthropic). Written with AI assistance under the
-## author's direction; methods are established techniques cited in the
-## documentation, and the results are validated in tests/testthat.
-
 #' Growing degree days
 #'
 #' Daily thermal time by the capped-average method: the mean of the daily

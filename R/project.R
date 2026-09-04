@@ -1,7 +1,3 @@
-## Assisted-by: Claude (Anthropic). Written with AI assistance under the
-## author's direction; methods are established techniques cited in the
-## documentation, and the results are validated in tests/testthat.
-
 #' Create an agricultural analysis project
 #'
 #' Builds the object every other function in the package operates on. The unit

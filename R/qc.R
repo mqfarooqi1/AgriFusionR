@@ -1,7 +1,3 @@
-## Assisted-by: Claude (Anthropic). Written with AI assistance under the
-## author's direction; methods are established techniques cited in the
-## documentation, and the results are validated in tests/testthat.
-
 #' Check a project for the faults that invalidate an analysis
 #'
 #' Runs the checks that are cheap to automate and expensive to discover late.

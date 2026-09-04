@@ -1,7 +1,3 @@
-## Assisted-by: Claude (Anthropic). Written with AI assistance under the
-## author's direction; methods are established techniques cited in the
-## documentation, and the results are validated in tests/testthat.
-
 ## Base graphics throughout, so that plotting works in every installation
 ## without adding a heavy dependency. Palettes come from grDevices::hcl.colors,
 ## whose defaults are perceptually uniform and safe for colour vision

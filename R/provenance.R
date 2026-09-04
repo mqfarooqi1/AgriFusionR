@@ -1,7 +1,3 @@
-## Assisted-by: Claude (Anthropic). Written with AI assistance under the
-## author's direction; methods are established techniques cited in the
-## documentation, and the results are validated in tests/testthat.
-
 ## Every operation appends to a ledger. This is what makes a re-run twelve
 ## months later mean something, and it is what report() turns into a methods
 ## section.
