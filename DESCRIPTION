@@ -1,6 +1,6 @@
 Package: AgriFusionR
 Title: An Integration Framework for Agricultural Analytics
-Version: 0.1.0
+Version: 0.1.1
 Authors@R:
     person("Muhammad", "Farooqi", email = "mqfarooqi@gmail.com",
            role = c("aut", "cre"),
@@ -51,4 +51,4 @@ Roxygen: list(markdown = TRUE)
 URL: https://github.com/mqfarooqi1/AgriFusionR,
         https://mqfarooqi1.github.io/AgriFusionR/
 BugReports: https://github.com/mqfarooqi1/AgriFusionR/issues
-Config/roxygen2/version: 8.0.0
+Config/roxygen2/version: 8.1.0

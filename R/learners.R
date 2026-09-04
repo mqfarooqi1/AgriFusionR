@@ -1,7 +1,3 @@
-## Assisted-by: Claude (Anthropic). Written with AI assistance under the
-## author's direction; methods are established techniques cited in the
-## documentation, and the results are validated in tests/testthat.
-
 ## Adapters to established implementations. Nothing here reimplements a
 ## learning algorithm: each entry is a thin translation between the package's
 ## (x, y) convention and somebody else's well-tested code. Every adapter is
@@ -59,7 +55,19 @@
 #' @keywords internal
 #' @noRd
 .stack_fit <- function(x, y, base = NULL, folds = 5L, ...) {
-    base <- base %||% c("ranger", "glmnet", "cubist", "knn")
+    base <- base %||% c("ranger", "enet", "cubist", "knn")
+
+    ## A name that is not registered at all is almost always a typo, and
+    ## dropping it silently hides the mistake: the stack then runs without a
+    ## base learner the caller believed was in it. A learner that is registered
+    ## but whose package is absent is a different case, and is skipped quietly.
+    unknown <- base[!base %in% names(.afr$learners)]
+    if (length(unknown)) {
+        warning("ignoring unregistered base learner(s): ",
+                paste(unknown, collapse = ", "),
+                ". See list_learners() for the available names.",
+                call. = FALSE)
+    }
     base <- Filter(function(b) {
         l <- .afr$learners[[b]]
         !is.null(l) && all(vapply(l$requires, .have_pkg, TRUE))

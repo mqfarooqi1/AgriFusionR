@@ -40,18 +40,20 @@ export(train_model)
 export(uncertainty)
 export(units_of)
 importFrom(grDevices,hcl.colors)
-importFrom(graphics,abline)
-importFrom(graphics,axis)
-importFrom(graphics,box)
-importFrom(graphics,image)
-importFrom(graphics,layout)
-importFrom(graphics,legend)
-importFrom(graphics,lines)
-importFrom(graphics,mtext)
-importFrom(graphics,par)
-importFrom(graphics,points)
-importFrom(graphics,polygon)
-importFrom(graphics,rect)
-importFrom(graphics,segments)
-importFrom(graphics,text)
-importFrom(graphics,title)
+importFrom(graphics,
+  abline,
+  axis,
+  box,
+  image,
+  layout,
+  legend,
+  lines,
+  mtext,
+  par,
+  points,
+  polygon,
+  rect,
+  segments,
+  text,
+  title
+)

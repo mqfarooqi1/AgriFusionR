@@ -107,3 +107,33 @@ test_that("learners run end to end through train_model", {
         expect_true(is.finite(m$metrics[["rmse"]]), info = nm)
     }
 })
+
+test_that("the stack's default base learners are all real names", {
+    ## The default list once contained "glmnet", the package name, where the
+    ## registered learner is called "enet". Filter() dropped it silently, so
+    ## the ensemble ran without its strongest member and nothing said so.
+    default_base <- eval(formals(AgriFusionR:::.stack_fit)$base)
+    if (is.null(default_base)) {
+        default_base <- c("ranger", "enet", "cubist", "knn")
+    }
+    expect_true(all(default_base %in% list_learners()$name))
+})
+
+test_that("an unregistered base learner is reported, not silently dropped", {
+    skip_if_not_installed("ranger")
+    f <- fixture(120)
+    set.seed(4)
+    expect_warning(
+        AgriFusionR:::.stack_fit(f$xtr, f$ytr,
+                                 base = c("lm", "knn", "not_a_learner")),
+        "unregistered base learner")
+})
+
+test_that("the stack includes the elastic net when glmnet is available", {
+    skip_if_not_installed("glmnet")
+    skip_if_not_installed("ranger")
+    f <- fixture(160)
+    set.seed(6)
+    fit <- AgriFusionR:::.stack_fit(f$xtr, f$ytr)
+    expect_true("enet" %in% names(fit$weights))
+})
