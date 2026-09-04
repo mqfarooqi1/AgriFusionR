@@ -264,7 +264,7 @@ results.
 cat(head(report(m), 24), sep = "\n")
 #> # Model card
 #> 
-#> Generated 2026-08-26 by AgriFusionR.
+#> Generated 2026-09-04 by AgriFusionR.
 #> 
 #> ## What was fitted
 #> 

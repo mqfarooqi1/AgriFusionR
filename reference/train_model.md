@@ -103,6 +103,6 @@ m
 #>   features   : 64 
 #>   resampling : spatial_block (3 folds) 
 #>   spatial CV : RMSE 584.939  MAE 339.920  R2 -869544.922  (n=36)
-#>   random CV  : RMSE 23.243  MAE 7.477  R2 -1372.005
-#>   optimism   : random CV overstates R2 by 868172.917
+#>   random CV  : RMSE 42.633  MAE 21.493  R2 -4618.230
+#>   optimism   : random CV overstates R2 by 864926.693
 ```

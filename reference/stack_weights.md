@@ -37,7 +37,23 @@ set.seed(1)
 m <- train_model(p, "yield", algorithm = "stack", k = 3,
                  compare_random = FALSE)
 #> Warning: 24 features for 42 observations. Unregularised linear learners will be rank deficient here; prefer a tree-based or penalised learner, or pass fewer `stats` to build_features().
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
+#> Warning: Option grouped=FALSE enforced in cv.glmnet, since < 3 observations per fold
 stack_weights(m)
-#>      ranger      cubist         knn 
-#> 0.990871671 0.009128329 0.000000000 
+#>      ranger        enet      cubist         knn 
+#> 0.990703715 0.000000000 0.009296285 0.000000000 
 ```

@@ -1,5 +1,14 @@
 # Changelog
 
+## AgriFusionR 0.1.1
+
+- Fixed the stacked ensemble’s default base learners, which listed
+  `glmnet`, the package name, where the registered learner is `enet`.
+  The name was dropped silently, so `stack` ran without the elastic net
+  and nothing said so. An unregistered base learner now warns instead of
+  disappearing.
+- Added a demo covering the whole package: `demo("AgriFusionR")`.
+
 ## AgriFusionR 0.1.0
 
 CRAN release: 2026-08-26
