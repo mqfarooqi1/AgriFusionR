@@ -643,7 +643,7 @@ cat(head(report(m), 20), sep = "\n")
 #> Warning: prediction from rank-deficient fit; attr(*, "non-estim") has doubtful cases
 #> # Model card
 #> 
-#> Generated 2026-09-04 by AgriFusionR.
+#> Generated 2026-09-21 by AgriFusionR.
 #> 
 #> ## What was fitted
 #> 
